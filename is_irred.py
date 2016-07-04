@@ -1,4 +1,5 @@
 # tests to determine whether a polynomial is irreducible over Q[x]
+# let poly = a_0 + a_1 x + ... + a_n x^n
 
 from fractions import Fraction
 import numpy
@@ -13,13 +14,33 @@ def is_prime(num):
     return True
 
 
+def divisors(num):
+    """
+    returns a list of all divisors of num
+    including the trivial divisors 1 and num itslef
+    :param num: int
+    :return: list(int)
+    """
+    pass
+
+
 def rational_root(poly):
     """
     rational root test
     :param poly: numpy.polynomial.polynomial
     :return: Bool
     """
-    return True
+    a_0 = poly[0]
+    a_n = poly[-1]
+    cand_numerators = divisors(a_0)
+    cand_denominators = divisors(a_n)
+    cand_roots = []
+    # include r/s if Fraction.gcd(r, s) == 1
+    for r in cand_numerators:
+        for s in cand_denominators:
+            if gcd(r, s) == 1:
+                cand_roots.append(Fraction(r, s))
+    return any((numpy.polyval(poly, cand_root) == 0 for cand_root in cand_roots))
 
 
 def eisenstein(poly, p):

@@ -34,6 +34,7 @@ def cand_polys(p, d):
     as a generator of tuples of polynomial coefficients in order of increasing degree
     polynomials with a zero constant term are excluded
     because they are guaranteed to have a root at x = 0
+    cannot have zero coefficient for largest power
     :param p: int
     :param d: int
     :return: generator of numpy.polynomial.polynomial
