@@ -34,12 +34,7 @@ def rational_root(poly):
     a_n = poly[-1]
     cand_numerators = divisors(a_0)
     cand_denominators = divisors(a_n)
-    cand_roots = []
-    # include r/s if Fraction.gcd(r, s) == 1
-    for r in cand_numerators:
-        for s in cand_denominators:
-            if gcd(r, s) == 1:
-                cand_roots.append(Fraction(r, s))
+    cand_roots = (Fraction(r, s) for r in cand_numerators for s in cand_denominators if gcd(r, s) == 1)
     return any((numpy.polyval(poly, cand_root) == 0 for cand_root in cand_roots))
 
 
