@@ -24,6 +24,18 @@ def divisors(num):
     pass
 
 
+def gcd(a, b):
+    """
+    given two integers, returns their greatest common divisor
+    :param a: int
+    :param b: int
+    :return: int
+    """
+    while b:
+        a, b = b, a % b
+    return a
+
+
 def rational_root(poly):
     """
     rational root test
